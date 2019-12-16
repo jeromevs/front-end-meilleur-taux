@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
-}
+/* ########## GLOBAL RULES ################## */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --orange: #ff9d22;
+  --grey: #e4e4e4;
+  --black: #1e1e1e;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.container {
+  width: 800px;
+}
+.title {
+  color: var(--orange);
+  font-size: 40px;
+  font-weight: bolder;
+  margin-bottom: 30px;
+}
+.button-display {
+  display: flex;
+  justify-content: space-between;
+}
+/* ########## HEADER ################## */
+
+.header {
+  height: 100px;
+  padding-top: 50px;
+  border-bottom: solid 1px var(--grey);
+}
+
+.header-text {
+  font-size: 18px;
+  font-weight: 400;
+}
+/* ########## HOME ################## */
+
+.home {
+  height: 200px;
+}
+
+/* ########## TYPEGOOD ################## */
+.type-good {
+  margin-bottom: 200px;
+}
+.typegood-button {
+  width: 390px;
+  height: 100px;
+  background-color: var(--orange);
+  font-weight: bold;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
 }
-
-.App-link {
-  color: #61dafb;
+/* ########## STATEGOOD ################## */
+.state-good {
+  margin-bottom: 200px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.stategood-button {
+  width: 390px;
+  height: 100px;
+  background-color: var(--orange);
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+/* ########## USAGEGOOD ################## */
+.usage-good {
+  margin-bottom: 200px;
+}
+.usagegood-button {
+  width: 260px;
+  height: 100px;
+  background-color: var(--orange);
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+/* ########## USER SITUATION ################## */
+.user-situation {
+  margin-bottom: 200px;
+}
+.user-situation-button {
+  width: 190px;
+  height: 100px;
+  background-color: var(--orange);
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+/* ########## PROG BAR ################## */
+.prog-bar {
+  display: flex;
+  justify-content: space-between;
+}
+.prev-button {
+  text-decoration: underline;
+}
+.next-button {
+  background-color: var(--orange);
+  color: white;
+  height: 30px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
 }
