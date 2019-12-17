@@ -100,10 +100,28 @@
   align-items: center;
   border-radius: 15px;
 }
+/* ########## LOCATION ################## */
+.location-country {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--grey);
+  height: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.question-country {
+  width: 400px;
+}
+.location-select {
+  width: 200px;
+  border: black solid 1px;
+  font-weight: 400;
+}
 /* ########## PROG BAR ################## */
 .prog-bar {
   display: flex;
   justify-content: space-between;
+  padding-top: 60px;
 }
 .prev-button {
   text-decoration: underline;

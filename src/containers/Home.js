@@ -3,6 +3,7 @@ import TypeGood from "../components/TypeGood";
 import StateGood from "../components/StateGood";
 import UsageGood from "../components/UsageGood";
 import UserSituation from "../components/UserSituation";
+import Location from "../components/Location";
 function Home({ counter, setCounter, userProject, setUserProject }) {
   return (
     <div className="home">
@@ -33,6 +34,14 @@ function Home({ counter, setCounter, userProject, setUserProject }) {
       ) : null}
       {counter === 3 ? (
         <UserSituation
+          userProject={userProject}
+          setUserProject={setUserProject}
+          counter={counter}
+          setCounter={setCounter}
+        />
+      ) : null}
+      {counter === 4 ? (
+        <Location
           userProject={userProject}
           setUserProject={setUserProject}
           counter={counter}

@@ -12,11 +12,12 @@ function App() {
   const [counter, setCounter] = useState(0);
   //set the userProject
   const [userProject, setUserProject] = useState({});
+  console.log(userProject);
 
-  useEffect(() => {
-    console.log(userProject);
-    // console.log(counter);
-  }, [userProject]);
+  // useEffect(() => {
+  //   console.log(userProject);
+  //   // console.log(counter);
+  // }, [userProject]);
 
   return (
     <div className="app">
