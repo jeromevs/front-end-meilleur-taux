@@ -9,7 +9,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   };
   useEffect(() => {
     setUserProject({ ...userProject, locationGood: selectedCountry });
-  }, [selectedCountry]);
+  }, [selectedCountry, setUserProject]);
   return (
     <div className="location">
       <div className="title">OU SE SITUE VOTRE BIEN A FINANCER ?</div>
@@ -23,14 +23,24 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
             value={selectedCountry}
             onChange={event => {
               setSelectedCountry(event.target.value);
-              setUserProject({ ...userProject, locationGood: selectedCountry });
+              setUserProject({
+                ...userProject,
+                locationGood: { country: selectedCountry }
+              });
             }}
           >
             {countryList.map(countryName => {
-              return <option value={countryName}>{countryName}</option>;
+              return (
+                <option value={countryName} key={countryName}>
+                  {countryName}
+                </option>
+              );
             })}
           </select>
         </form>
+      </div>
+      <div className="location-city">
+        <span className="question-country">Ville ou code postal *</span>
       </div>
     </div>
   );
