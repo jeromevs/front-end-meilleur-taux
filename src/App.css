@@ -116,14 +116,40 @@
   width: 200px;
   border: black solid 1px;
   font-weight: 400;
+  font-family: "oswald";
 }
 .location-city {
   display: flex;
   flex-direction: row;
+  height: 100px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.location-city-input {
+  padding: 5px;
+}
+.city-choice {
+  display: flex;
+  flex-direction: column;
+}
+.city-select {
+  width: 200px;
+  height: 100px;
+  border: black solid 1px;
+  font-weight: 400;
+  font-family: "oswald";
+}
+/* ########## AMOUNT ################## */
+.amount-project {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--grey);
   height: 30px;
   padding-left: 10px;
   padding-top: 10px;
 }
+
 /* ########## PROG BAR ################## */
 .prog-bar {
   display: flex;
