@@ -39,7 +39,11 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   const cityList = [];
 
   for (let i = 0; i < cityArray.length; i++) {
-    cityList.push(<option value={cityArray[i]}>{cityArray[i]}</option>);
+    cityList.push(
+      <option value={cityArray[i]} key={i}>
+        {cityArray[i]}
+      </option>
+    );
   }
 
   // const handleChange = () => {

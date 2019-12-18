@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cookies from "js-cookie";
-import axios from "axios";
+// import axios from "axios";
 
 import "./App.css";
 import Home from "./containers/Home";
@@ -9,60 +9,29 @@ import Header from "./components/Header";
 import ProgBar from "./components/ProgBar";
 
 function App() {
-  // set a counter to enable navigation between the different elements
-  const [counter, setCounter] = useState(0);
+  // get the last know counter value or set it to 0
+  let initialCounter = Cookies.get("counter") || 0;
+  console.log(initialCounter);
+  // initialCounter = 0;
   //set the project to add the different element of the object fulfilled by the user
-  const [userProject, setUserProject] = useState({});
-  console.log(userProject);
-  // if no user cookie: route create, else route update
-  useEffect(() => {
-    if (!Cookies.get("userProjectId")) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.post(
-            "https://meilleurtaux.herokuapp.com/userProject/create",
-            userProject
-          );
-          console.log(response.data);
-          Cookies.set("userProjectId", response.data._id);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-      fetchData();
-    } else {
-      const fetchData = async () => {
-        try {
-          const response = await axios.post(
-            "https://meilleurtaux.herokuapp.com/userProject/update",
-            userProject
-          );
-          console.log(response.data);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-      fetchData();
-    }
-  }, []);
+  const [counter, setCounter] = useState(initialCounter);
 
+  // get the last know userProject value or set it to {}
+  let initialUserProject = Cookies.getJSON("userProject") || {};
+  console.log(initialUserProject);
+  // set a counter to enable navigation between the different elements
+  const [userProject, setUserProject] = useState(initialUserProject);
+  console.log(userProject);
+  // save cookie in counter and  userProject to be able to close and reopen the browser and be able to retrieve his position and project
+  // update the cookie 'userProject' every time 'userProject' change
   useEffect(() => {
-    const id = Cookies.get("userProjectId");
-    console.log(id);
-    if (userProject.id) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "https://meilleurtaux.herokuapp.com/userProject/" + id
-          );
-          setUserProject(response.data);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-      fetchData();
-    }
-  });
+    Cookies.set("userProject", userProject);
+  }, [userProject]);
+
+  // update the cookie 'counter' every time 'counter' change
+  useEffect(() => {
+    Cookies.set("counter", counter);
+  }, [counter]);
 
   return (
     <div className="app">
@@ -79,7 +48,12 @@ function App() {
               />
             </Route>
           </Switch>
-          <ProgBar setCounter={setCounter} counter={counter} />
+          <ProgBar
+            setCounter={setCounter}
+            counter={counter}
+            userProject={userProject}
+            setUserProject={setUserProject}
+          />
         </Router>
       </div>
     </div>

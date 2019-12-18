@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProgBar = ({ setCounter, counter }) => {
+const ProgBar = ({ setCounter, counter, userProject, setUserProject }) => {
   return (
     <div className="prog-bar">
       {counter <= 0 ? (
@@ -21,6 +21,7 @@ const ProgBar = ({ setCounter, counter }) => {
         className="next-button"
         onClick={() => {
           setCounter(counter + 1);
+          setUserProject(userProject);
         }}
       >
         suivant

@@ -104,10 +104,11 @@
 .location-country {
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: var(--grey);
-  height: 30px;
+  height: 40px;
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 1px;
 }
 .question-country {
   width: 400px;
@@ -117,6 +118,7 @@
   border: black solid 1px;
   font-weight: 400;
   font-family: "oswald";
+  height: 30px;
 }
 .location-city {
   display: flex;
@@ -128,6 +130,7 @@
 
 .location-city-input {
   padding: 5px;
+  width: 185px;
 }
 .city-choice {
   display: flex;
@@ -141,20 +144,59 @@
   font-family: "oswald";
 }
 /* ########## AMOUNT ################## */
-.amount-project {
+.amount {
+  margin-bottom: 30px;
+}
+.amount-project-grey {
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: var(--grey);
-  height: 30px;
+
+  height: 50px;
   padding-left: 10px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+}
+.amount-project-white {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 50px;
+  padding-left: 10px;
+  /* padding-top: 10px; */
+}
+.amount-project-question {
+  width: 400px;
+}
+.amount-project-input {
+  border: var(--orange) solid 1px;
+  padding: 5px;
+  width: 185px;
+  font-family: "oswald";
+  font-weight: 400;
+  font-size: 14px;
+  text-align: right;
+  outline: none;
+}
+.span-amount {
+  padding-left: 5px;
+}
+.amount-project.input {
+  font-family: "oswald";
+  font-weight: 400;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* ########## PROG BAR ################## */
 .prog-bar {
   display: flex;
   justify-content: space-between;
-  padding-top: 60px;
+  padding-top: 100px;
 }
 .prev-button {
   text-decoration: underline;
