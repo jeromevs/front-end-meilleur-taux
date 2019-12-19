@@ -9,15 +9,33 @@ import Header from "./components/Header";
 import ProgBar from "./components/ProgBar";
 
 function App() {
+  const [isNextAllowed, setIsNextAllowed] = useState(false);
   // get the last know counter value or set it to 0
-  let initialCounter = Cookies.get("counter") || 0;
+  let initialCounter = parseInt(Cookies.get("counter"), 10) || 0;
   console.log(initialCounter);
   // initialCounter = 0;
   //set the project to add the different element of the object fulfilled by the user
   const [counter, setCounter] = useState(initialCounter);
 
   // get the last know userProject value or set it to {}
-  let initialUserProject = Cookies.getJSON("userProject") || {};
+  let initialUserProject = Cookies.getJSON("userProject") || {
+    typeGood: "",
+    stateGood: "",
+    usageGood: "",
+    userSituation: "",
+    locationGood: {
+      country: "France",
+      city: ""
+    },
+    amount: {
+      good: 0,
+      work: 0,
+      notary: 0,
+      project: 0
+    },
+    userEmail: ""
+  };
+
   console.log(initialUserProject);
   // set a counter to enable navigation between the different elements
   const [userProject, setUserProject] = useState(initialUserProject);
@@ -45,6 +63,8 @@ function App() {
                 setCounter={setCounter}
                 userProject={userProject}
                 setUserProject={setUserProject}
+                setIsNextAllowed={setIsNextAllowed}
+                isNextAllowed={isNextAllowed}
               />
             </Route>
           </Switch>

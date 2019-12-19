@@ -5,12 +5,7 @@ const Finish = ({ counter, setCounter, userProject, setUserProject }) => {
   return (
     <>
       <div>FINISH</div>
-      <ProgBar
-        setCounter={setCounter}
-        counter={counter}
-        userProject={userProject}
-        setUserProject={setUserProject}
-      />
+      <div>{userProject.fileId}</div>
     </>
   );
 };

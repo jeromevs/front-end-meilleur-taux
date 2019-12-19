@@ -7,7 +7,14 @@ import Location from "../components/Location";
 import Amount from "../components/Amount";
 import Email from "../components/Email";
 import Finish from "../components/Finish";
-function Home({ counter, setCounter, userProject, setUserProject }) {
+function Home({
+  counter,
+  setCounter,
+  userProject,
+  setUserProject,
+  isNextAllowed,
+  setIsNextAllowed
+}) {
   return (
     <div className="home">
       {/* allows navigation between the different elements */}
@@ -43,6 +50,7 @@ function Home({ counter, setCounter, userProject, setUserProject }) {
           setCounter={setCounter}
         />
       ) : null}
+
       {counter === 4 ? (
         <Location
           userProject={userProject}

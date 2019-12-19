@@ -5,7 +5,8 @@ import ProgBar from "./ProgBar";
 
 const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   //choice of the country, France by default
-  const [selectedCountry, setSelectedCountry] = useState("France");
+  // const [selectedCountry, setSelectedCountry] = useState("France");
+
   // const handleSubmit = event => {
   //   event.preventDefault();
   //   setSelectedCountry(selectedCountry);
@@ -15,7 +16,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   // }, [selectedCountry]);
 
   //Choice of the city.
-  const [city, setCity] = useState();
+  const [city, setCity] = useState(userProject.locationGood.city);
   const [list, setList] = useState([]);
   //function to retrieve the city list on the vipoco api
   const fetchData = async () => {
@@ -55,10 +56,10 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   //   setCounter(counter + 1);
   // };
 
-  const handleChange = () => {
-    setCounter(counter + 1);
-    setUserProject({});
-  };
+  // const handleChange = () => {
+  //   setCounter(counter + 1);
+  //   setUserProject({});
+  // };
 
   return (
     <div className="location">
@@ -70,12 +71,13 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
         {/* <form autoComplete="off" onSubmit={handleSubmit}> */}
         <select
           className="location-select"
-          value={selectedCountry}
+          value={userProject.locationGood.country}
           onChange={event => {
-            setSelectedCountry(event.target.value);
+            console.log(event.target.value);
+            // setSelectedCountry(event.target.value);
             setUserProject({
               ...userProject,
-              locationGood: { country: selectedCountry }
+              locationGood: { country: event.target.value }
             });
           }}
         >
@@ -101,7 +103,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
             }}
             autoComplete={cityArray}
           />
-          {city !== undefined ? (
+          {city !== "" ? (
             <select
               size={10}
               className="city-select"
@@ -112,10 +114,9 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
                   ...userProject,
                   locationGood: {
                     city: event.target.value,
-                    country: selectedCountry
+                    country: userProject.locationGood.country
                   }
                 });
-                setCounter(counter + 1);
               }}
             >
               {cityList}
@@ -130,7 +131,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
         counter={counter}
         userProject={userProject}
         setUserProject={setUserProject}
-        nextFunc={handleChange}
+        // nextFunc={handleChange}
       />
     </div>
   );

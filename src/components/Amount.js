@@ -2,37 +2,32 @@ import React, { useState, useEffect } from "react";
 import ProgBar from "./ProgBar";
 
 const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
-  const [good, setGood] = useState();
-  const [work, setWork] = useState();
-  //   console.log(good);
-  //   console.log(work);
+  const [amountGood, setAmountGood] = useState(userProject.amount.good);
+  const [amountWork, setAmountWork] = useState(userProject.amount.work);
 
-  let notary = 0;
-
-  if (userProject.stateGood === "ancien") {
-    notary = good * 0.0738;
-  } else {
-    notary = good * 0.018;
-  }
-  //   console.log(notary);
-  let project = 0;
-
-  if (good === null) {
-    project = "";
-  } else {
-    project = Number(good) + Number(work) + Number(notary);
-  }
   useEffect(() => {
+    let notaire = 0;
+    const good = Number.isNaN(amountGood) ? 0 : amountGood;
+    const work = Number.isNaN(amountWork) ? 0 : amountWork;
+    if (userProject.stateGood === "ancien") {
+      notaire = Math.round(good * 0.0738);
+    } else {
+      notaire = Math.round(good * 0.018);
+    }
+
+    let total = notaire + good + work;
+
     setUserProject({
       ...userProject,
       amount: {
-        good: good,
-        work: work,
-        notary: notary,
-        project: project
+        good: good === 0 ? "" : good,
+        work: work === 0 ? "" : work,
+        notary: notaire,
+        project: total === 0 ? "" : total
       }
     });
-  }, [work, good]);
+  }, [amountGood, amountWork]);
+
   return (
     <div className="amount">
       <div className="title">DEFINISSONS LE MONTANT DE VOTRE PROJET</div>
@@ -43,15 +38,9 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         <input
           className="amount-project-input"
           type="number"
-          value={good}
+          value={amountGood}
           onChange={event => {
-            setGood(event.target.value);
-            // setUserProject({
-            //   ...userProject,
-            //   amount: {
-            //     good: good
-            //   }
-            // });
+            setAmountGood(parseInt(event.target.value, 10));
           }}
         />
         <span className="span-amount"> €</span>
@@ -63,30 +52,39 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         <input
           className="amount-project-input"
           type="number"
-          value={work}
+          value={amountWork}
           onChange={event => {
-            setWork(event.target.value);
+            setAmountWork(parseInt(event.target.value, 10));
           }}
         />
         <span className="span-amount"> €</span>
       </div>
       <div className="amount-project-grey">
         <span className="amount-project-question">Frais de notaire *</span>
-        <input className="amount-project-input" value={notary} />
+        <input
+          className="amount-project-input"
+          value={userProject.amount.notary}
+        />
         <span className="span-amount"> €</span>
       </div>
       <div className="amount-project-white">
         <span className="amount-project-question">Budget estime du projet</span>
-        <input className="amount-project-input" value={project} />
+        <input
+          className="amount-project-input"
+          value={userProject.amount.project}
+        />
         <span className="span-amount"> €</span>
-        {/* {console.log(project)} */}
       </div>
-      <ProgBar
-        setCounter={setCounter}
-        counter={counter}
-        userProject={userProject}
-        setUserProject={setUserProject}
-      />
+      {userProject.amount.good === "" ? (
+        <div>merci de remplir un montant estime</div>
+      ) : (
+        <ProgBar
+          setCounter={setCounter}
+          counter={counter}
+          userProject={userProject}
+          setUserProject={setUserProject}
+        />
+      )}
     </div>
   );
 };

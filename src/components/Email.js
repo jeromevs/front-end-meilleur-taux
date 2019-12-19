@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Image from "../images/visuel-desktop-email.jpg";
-import ProgBar from "./ProgBar";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Email = ({ counter, setCounter, userProject, setUserProject }) => {
   const [checkbox, setCheckbox] = useState(false);
+  const [fileId, setFileId] = useState("");
   //regEx to verify that user types a valid email address form
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+  const sendUserProject = async () => {
+    try {
+      const response = await axios.post(
+        "https://meilleurtaux.herokuapp.com/userProject/save",
+        userProject
+      );
+      console.log(response.data.fileId);
+      setUserProject({ ...userProject, fileId: response.data.fileId });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="email">
       <div className="title">VOS COORDONNEES</div>
@@ -45,31 +61,41 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
       <span className="checkbox-text">
         J'accepte de recevoir par email des propositions de Meilleurtaux
       </span>
-      <div className="prog-bar">
-        {counter <= 0 ? (
-          <span className="prev-button">précédent</span>
-        ) : (
+      {checkbox === false ? (
+        <div>
+          merci d'accepter de recevoir notre poposition par e-mail pour valider
+          votre dossier
+        </div>
+      ) : (
+        <div className="prog-bar">
+          {counter <= 0 ? (
+            <span className="prev-button">précédent</span>
+          ) : (
+            <span
+              className="prev-button"
+              onClick={() => {
+                setCounter(counter - 1);
+              }}
+            >
+              précédent
+            </span>
+          )}
+
+          {counter}
           <span
-            className="prev-button"
+            className="next-button"
             onClick={() => {
-              setCounter(counter - 1);
+              sendUserProject();
+              setCounter(counter + 1);
+
+              // Cookies.remove("counter");
+              // Cookies.remove("userProject");
             }}
           >
-            précédent
+            Valider
           </span>
-        )}
-
-        {counter}
-        <span
-          className="next-button"
-          onClick={() => {
-            setCounter(counter + 1);
-            // setUserProject(...userProject);
-          }}
-        >
-          suivant
-        </span>
-      </div>
+        </div>
+      )}
     </div>
   );
 };
