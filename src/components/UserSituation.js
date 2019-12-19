@@ -1,4 +1,5 @@
 import React from "react";
+import ProgBar from "./ProgBar";
 
 const UserSituation = ({
   counter,
@@ -53,6 +54,12 @@ const UserSituation = ({
           HEBERGE A TITRE GRATUIT
         </span>
       </div>
+      <ProgBar
+        setCounter={setCounter}
+        counter={counter}
+        userProject={userProject}
+        setUserProject={setUserProject}
+      />
     </div>
   );
 };

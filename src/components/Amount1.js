@@ -2,37 +2,45 @@ import React, { useState, useEffect } from "react";
 import ProgBar from "./ProgBar";
 
 const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
-  const [good, setGood] = useState();
-  const [work, setWork] = useState();
+  // const [good, setGood] = useState();
+
+  // const [work, setWork] = useState();
   //   console.log(good);
   //   console.log(work);
 
   let notary = 0;
 
-  if (userProject.stateGood === "ancien") {
-    notary = good * 0.0738;
-  } else {
-    notary = good * 0.018;
-  }
+  useEffect(() => {
+    if (userProject.stateGood === "ancien") {
+      notary = userProject.amount.good * 0.0738;
+    } else {
+      notary = userProject.amount.good * 0.018;
+    }
+  }, [userProject.amount.good]);
+
   //   console.log(notary);
   let project = 0;
 
-  if (good === null) {
+  if (
+    userProject.amount.good === undefined ||
+    userProject.amount.work === undefined
+  ) {
     project = "";
   } else {
-    project = Number(good) + Number(work) + Number(notary);
+    project = userProject.amount.good + userProject.amount.work + notary;
   }
-  useEffect(() => {
-    setUserProject({
-      ...userProject,
-      amount: {
-        good: good,
-        work: work,
-        notary: notary,
-        project: project
-      }
-    });
-  }, [work, good]);
+  // each time the project value changes set the userProject
+  // useEffect(() => {
+  //   setUserProject({
+  //     ...userProject,
+  //     amount: {
+  //       good: good,
+  //       work: work,
+  //       notary: notary,
+  //       project: project
+  //     }
+  //   });
+  // }, [project]);
   return (
     <div className="amount">
       <div className="title">DEFINISSONS LE MONTANT DE VOTRE PROJET</div>
@@ -42,16 +50,19 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         </span>
         <input
           className="amount-project-input"
+          // placeholder={good}
           type="number"
-          value={good}
+          value={userProject.amount.good}
           onChange={event => {
-            setGood(event.target.value);
-            // setUserProject({
-            //   ...userProject,
-            //   amount: {
-            //     good: good
-            //   }
-            // });
+            setUserProject({
+              ...userProject,
+              amount: {
+                good: Number(event.target.value),
+                work: userProject.amount.work,
+                notary: notary,
+                project: project
+              }
+            });
           }}
         />
         <span className="span-amount"> €</span>
@@ -62,22 +73,35 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         </span>
         <input
           className="amount-project-input"
+          placeholder={userProject.amount.work}
           type="number"
-          value={work}
+          value={userProject.amount.work}
           onChange={event => {
-            setWork(event.target.value);
+            setUserProject({
+              ...userProject,
+              amount: {
+                good: userProject.amount.good,
+                work: Number(event.target.value),
+                notary: notary,
+                project: project
+              }
+            });
           }}
         />
         <span className="span-amount"> €</span>
       </div>
       <div className="amount-project-grey">
         <span className="amount-project-question">Frais de notaire *</span>
-        <input className="amount-project-input" value={notary} />
+        <input
+          className="amount-project-input"
+          value={userProject.amount.notary.toFixed(2)}
+          readOnly
+        />
         <span className="span-amount"> €</span>
       </div>
       <div className="amount-project-white">
         <span className="amount-project-question">Budget estime du projet</span>
-        <input className="amount-project-input" value={project} />
+        <input className="amount-project-input" defaultValue={project} />
         <span className="span-amount"> €</span>
         {/* {console.log(project)} */}
       </div>

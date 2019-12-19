@@ -191,6 +191,37 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+/* ########## EMAIL ################## */
+.email-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+.email-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 300px;
+  background-color: var(--orange);
+  height: 80px;
+  width: 180px;
+  padding: 20px;
+  color: white;
+}
+.email-image {
+  height: 100px;
+}
+.email-wrong {
+  padding-left: 5px;
+  color: red;
+  font-size: 10px;
+}
+.checkbox-text {
+  font-size: 12px;
+  padding-left: 5px;
+}
 
 /* ########## PROG BAR ################## */
 .prog-bar {

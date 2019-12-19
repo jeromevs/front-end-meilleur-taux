@@ -1,4 +1,5 @@
 import React from "react";
+import ProgBar from "./ProgBar";
 
 const TypeGood = ({ counter, setCounter, userProject, setUserProject }) => {
   return (
@@ -24,6 +25,12 @@ const TypeGood = ({ counter, setCounter, userProject, setUserProject }) => {
           APPARTEMENT
         </span>
       </div>
+      <ProgBar
+        setCounter={setCounter}
+        counter={counter}
+        userProject={userProject}
+        setUserProject={setUserProject}
+      />
     </div>
   );
 };

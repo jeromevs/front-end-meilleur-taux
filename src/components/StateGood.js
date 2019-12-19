@@ -1,4 +1,5 @@
 import React from "react";
+import ProgBar from "./ProgBar";
 
 const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
   return (
@@ -24,6 +25,12 @@ const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
           NEUF
         </span>
       </div>
+      <ProgBar
+        setCounter={setCounter}
+        counter={counter}
+        userProject={userProject}
+        setUserProject={setUserProject}
+      />
     </div>
   );
 };

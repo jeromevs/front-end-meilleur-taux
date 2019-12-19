@@ -48,12 +48,12 @@ function App() {
               />
             </Route>
           </Switch>
-          <ProgBar
+          {/* <ProgBar
             setCounter={setCounter}
             counter={counter}
             userProject={userProject}
             setUserProject={setUserProject}
-          />
+          /> */}
         </Router>
       </div>
     </div>

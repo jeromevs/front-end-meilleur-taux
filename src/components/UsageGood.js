@@ -1,4 +1,5 @@
 import React from "react";
+import ProgBar from "./ProgBar";
 
 const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
   return (
@@ -42,6 +43,12 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
           INVESTISSEMENT LOCATIF
         </span>
       </div>
+      <ProgBar
+        setCounter={setCounter}
+        counter={counter}
+        userProject={userProject}
+        setUserProject={setUserProject}
+      />
     </div>
   );
 };

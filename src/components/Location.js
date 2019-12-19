@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import countryList from "./countryList";
 import axios from "axios";
+import ProgBar from "./ProgBar";
 
 const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   //choice of the country, France by default
@@ -54,6 +55,11 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   //   setCounter(counter + 1);
   // };
 
+  const handleChange = () => {
+    setCounter(counter + 1);
+    setUserProject({});
+  };
+
   return (
     <div className="location">
       <div className="title">OU SE SITUE VOTRE BIEN A FINANCER ?</div>
@@ -100,7 +106,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
               size={10}
               className="city-select"
               value={city}
-              onChange={event => {
+              onClick={event => {
                 setCity(event.target.value);
                 setUserProject({
                   ...userProject,
@@ -119,6 +125,13 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
 
         {/* </form> */}
       </div>
+      <ProgBar
+        setCounter={setCounter}
+        counter={counter}
+        userProject={userProject}
+        setUserProject={setUserProject}
+        nextFunc={handleChange}
+      />
     </div>
   );
 };
