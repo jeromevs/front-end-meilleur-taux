@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 const Email = ({ counter, setCounter, userProject, setUserProject }) => {
   const [checkbox, setCheckbox] = useState(false);
-  const [fileId, setFileId] = useState("");
+  // const [fileId, setFileId] = useState("");
   //regEx to verify that user types a valid email address form
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -85,11 +85,10 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
           <span
             className="next-button"
             onClick={() => {
+              Cookies.remove("counter");
+              Cookies.remove("userProject");
               sendUserProject();
               setCounter(counter + 1);
-
-              // Cookies.remove("counter");
-              // Cookies.remove("userProject");
             }}
           >
             Valider

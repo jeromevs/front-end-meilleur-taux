@@ -5,8 +5,11 @@ import Cookies from "js-cookie";
 
 import "./App.css";
 import Home from "./containers/Home";
+import Login from "./containers/Login";
+import BackOffice from "./containers/BackOffice";
+import UserFile from "./containers/UserFile";
 import Header from "./components/Header";
-import ProgBar from "./components/ProgBar";
+// import ProgBar from "./components/ProgBar";
 
 function App() {
   const [isNextAllowed, setIsNextAllowed] = useState(false);
@@ -66,6 +69,15 @@ function App() {
                 setIsNextAllowed={setIsNextAllowed}
                 isNextAllowed={isNextAllowed}
               />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/backOffice">
+              <BackOffice />
+            </Route>
+            <Route path="/userFile">
+              <UserFile />
             </Route>
           </Switch>
           {/* <ProgBar
