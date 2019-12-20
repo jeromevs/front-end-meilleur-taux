@@ -108,7 +108,8 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
               size={10}
               className="city-select"
               value={city}
-              onClick={event => {
+              // readOnly et avant j avais mis onClick
+              onChange={event => {
                 setCity(event.target.value);
                 setUserProject({
                   ...userProject,

@@ -62,6 +62,7 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
       <div className="amount-project-grey">
         <span className="amount-project-question">Frais de notaire *</span>
         <input
+          readOnly
           className="amount-project-input"
           value={userProject.amount.notary}
         />
@@ -70,6 +71,7 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
       <div className="amount-project-white">
         <span className="amount-project-question">Budget estime du projet</span>
         <input
+          readOnly
           className="amount-project-input"
           value={userProject.amount.project}
         />

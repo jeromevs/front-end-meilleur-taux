@@ -76,7 +76,7 @@ function App() {
             <Route path="/backOffice">
               <BackOffice />
             </Route>
-            <Route path="/userFile">
+            <Route path="/userFile/:id">
               <UserFile />
             </Route>
           </Switch>

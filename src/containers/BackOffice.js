@@ -32,7 +32,7 @@ function BackOffice() {
         <>
           {userFiles.map((files, index) => {
             return (
-              <Link to="/userFile" key={index}>
+              <Link to={"/userFile/" + files.fileId} key={index}>
                 <div className="userFiles-array">{files.fileId}</div>
               </Link>
             );

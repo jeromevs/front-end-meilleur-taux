@@ -10,6 +10,7 @@ const Finish = ({ counter, setCounter, userProject, setUserProject }) => {
           Cookies.remove("counter");
           Cookies.remove("userProject");
           setCounter(0);
+          window.location.reload(true);
         }}
       />
 
