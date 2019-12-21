@@ -1,13 +1,18 @@
-import React from "react";
-import ProgBar from "./ProgBar";
+import React, { useState } from "react";
+import NavBar from "./NavBar";
 
 const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
+  const [isChoiceDone, setIsChoiceDone] = useState(false);
   return (
-    <div className="usage-good">
+    <div className="page">
       <div className="title">USAGE DU BIEN</div>
       <div className="button-display">
         <span
-          className="usagegood-button"
+          className={
+            userProject.usageGood === "residence principale"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({
               ...userProject,
@@ -16,10 +21,15 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           RESIDENCE PRINCIPALE
         </span>
         <span
-          className="usagegood-button"
+          className={
+            userProject.usageGood === "residence secondaire"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({
               ...userProject,
@@ -28,10 +38,15 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           RESIDENCE SECONDAIRE
         </span>
         <span
-          className="usagegood-button"
+          className={
+            userProject.usageGood === "investissement locatif"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({
               ...userProject,
@@ -40,15 +55,42 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           INVESTISSEMENT LOCATIF
         </span>
       </div>
-      <ProgBar
-        setCounter={setCounter}
-        counter={counter}
-        userProject={userProject}
-        setUserProject={setUserProject}
-      />
+      {isChoiceDone === false ? null : (
+        <span className="error-message">
+          Merci de faire un choix avant de valider
+        </span>
+      )}
+      <div className="down">
+        <NavBar
+          setCounter={setCounter}
+          counter={counter}
+          userProject={userProject}
+          setUserProject={setUserProject}
+        />
+        {userProject.usageGood === "" ? (
+          <span
+            className="next-button-off"
+            onClick={() => {
+              setIsChoiceDone(!isChoiceDone);
+            }}
+          >
+            Suivant
+          </span>
+        ) : (
+          <span
+            className="next-button"
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Suivant
+          </span>
+        )}
+      </div>
     </div>
   );
 };

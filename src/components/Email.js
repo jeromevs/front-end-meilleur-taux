@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "../images/visuel-desktop-email.jpg";
 import axios from "axios";
 import Cookies from "js-cookie";
+import NavBar from "./NavBar";
 
 const Email = ({ counter, setCounter, userProject, setUserProject }) => {
   const [checkbox, setCheckbox] = useState(false);
-  // const [fileId, setFileId] = useState("");
+  const [isAllOk, setIsAllOk] = useState(false);
   //regEx to verify that user types a valid email address form
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -23,14 +24,14 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
   };
 
   return (
-    <div className="email">
+    <div className="page">
       <div className="title">VOS COORDONNEES</div>
       <div className="email-header">
         <span className="email-message">
           Un devis vous sera envoye par mail avec un recapitulatif de votre
           demande
         </span>
-        <img className="email-image" src={Image} alt="image email" />
+        <img className="email-image" src={Image} alt="email" />
       </div>
       <div className="amount-project-grey">
         <span className="amount-project-question">
@@ -61,27 +62,32 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
       <span className="checkbox-text">
         J'accepte de recevoir par email des propositions de Meilleurtaux
       </span>
-      {checkbox === false ? (
-        <div>
-          merci d'accepter de recevoir notre poposition par e-mail pour valider
-          votre dossier
+      {isAllOk === true ? (
+        <div className="email-error-message">
+          merci de renseigner votre email et d'accepter de recevoir par email
+          les proposistions de Meilleurtaux pour valider votre demande
         </div>
-      ) : (
-        <div className="prog-bar">
-          {counter <= 0 ? (
-            <span className="prev-button">précédent</span>
-          ) : (
-            <span
-              className="prev-button"
-              onClick={() => {
-                setCounter(counter - 1);
-              }}
-            >
-              précédent
-            </span>
-          )}
+      ) : null}
 
-          {counter}
+      <div className="down">
+        <NavBar
+          setCounter={setCounter}
+          counter={counter}
+          userProject={userProject}
+          setUserProject={setUserProject}
+        />
+        {checkbox === false ||
+        emailRegEx.test(userProject.userEmail) === false ||
+        userProject.userEmail === "" ? (
+          <span
+            className="next-button-off"
+            onClick={() => {
+              setIsAllOk(!isAllOk);
+            }}
+          >
+            Valider
+          </span>
+        ) : (
           <span
             className="next-button"
             onClick={() => {
@@ -93,8 +99,8 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
           >
             Valider
           </span>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

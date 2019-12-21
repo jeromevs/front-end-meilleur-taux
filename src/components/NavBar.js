@@ -1,8 +1,8 @@
 import React from "react";
 
-const ProgBar = ({ setCounter, counter, userProject, setUserProject }) => {
+const NavBar = ({ setCounter, counter, userProject, setUserProject }) => {
   return (
-    <div className="prog-bar">
+    <div className="nav-bar">
       {counter <= 0 ? (
         <span className="prev-button">précédent</span>
       ) : (
@@ -17,17 +17,8 @@ const ProgBar = ({ setCounter, counter, userProject, setUserProject }) => {
       )}
 
       {counter}
-      <span
-        className="next-button"
-        onClick={() => {
-          setCounter(counter + 1);
-          setUserProject(userProject);
-        }}
-      >
-        suivant
-      </span>
     </div>
   );
 };
 
-export default ProgBar;
+export default NavBar;

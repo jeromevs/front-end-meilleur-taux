@@ -1,5 +1,5 @@
-import React from "react";
-import ProgBar from "./ProgBar";
+import React, { useState } from "react";
+import NavBar from "./NavBar";
 
 const UserSituation = ({
   counter,
@@ -7,30 +7,45 @@ const UserSituation = ({
   userProject,
   setUserProject
 }) => {
+  const [isChoiceDone, setIsChoiceDone] = useState(false);
   return (
-    <div className="user-situation">
+    <div className="page">
       <div className="title">VOTRE SITUATION ACTUELLE</div>
       <div className="button-display">
         <span
-          className="user-situation-button"
+          className={
+            userProject.userSituation === "locataire"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({ ...userProject, userSituation: "locataire" });
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           LOCATAIRE
         </span>
         <span
-          className="user-situation-button"
+          className={
+            userProject.userSituation === "proprietaire"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({ ...userProject, userSituation: "proprietaire" });
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           PROPRIETAIRE
         </span>
         <span
-          className="user-situation-button"
+          className={
+            userProject.userSituation === "logement de fonction"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({
               ...userProject,
@@ -39,10 +54,15 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
-          BENEFICIAIRE D'UN LOGEMENT DE FONCTION
+          <input className="radio" type="radio" />
+          LOGEMENT DE FONCTION
         </span>
         <span
-          className="user-situation-button"
+          className={
+            userProject.userSituation === "hebergement a titre gratuit"
+              ? "button-on"
+              : "button-off"
+          }
           onClick={() => {
             setUserProject({
               ...userProject,
@@ -51,15 +71,42 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
+          <input className="radio" type="radio" />
           HEBERGE A TITRE GRATUIT
         </span>
       </div>
-      <ProgBar
-        setCounter={setCounter}
-        counter={counter}
-        userProject={userProject}
-        setUserProject={setUserProject}
-      />
+      {isChoiceDone === false ? null : (
+        <span className="error-message">
+          Merci de faire un choix avant de valider
+        </span>
+      )}
+      <div className="down">
+        <NavBar
+          setCounter={setCounter}
+          counter={counter}
+          userProject={userProject}
+          setUserProject={setUserProject}
+        />
+        {userProject.userSituation === "" ? (
+          <span
+            className="next-button-off"
+            onClick={() => {
+              setIsChoiceDone(!isChoiceDone);
+            }}
+          >
+            Suivant
+          </span>
+        ) : (
+          <span
+            className="next-button"
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Suivant
+          </span>
+        )}
+      </div>
     </div>
   );
 };

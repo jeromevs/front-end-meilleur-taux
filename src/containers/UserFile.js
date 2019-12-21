@@ -39,10 +39,6 @@ function UserFile() {
     }
   };
 
-  //   useEffect(() => {
-  //     deleteUserFile();
-  //   }, []);
-
   return (
     <>
       {isLoading === true ? (
@@ -54,9 +50,7 @@ function UserFile() {
           <Link to="/BackOffice">
             <span
               onClick={() => {
-                {
-                  deleteUserFile();
-                }
+                deleteUserFile();
               }}
             >
               XX

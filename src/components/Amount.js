@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ProgBar from "./ProgBar";
+import NavBar from "./NavBar";
 
 const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
   const [amountGood, setAmountGood] = useState(userProject.amount.good);
   const [amountWork, setAmountWork] = useState(userProject.amount.work);
+  const [isAmountOk, setIsAmountOk] = useState(false);
+  const [isChoiceDone, setIsChoiceDone] = useState(false);
 
   useEffect(() => {
     let notaire = 0;
@@ -26,10 +28,11 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         project: total === 0 ? "" : total
       }
     });
+    // eslint-disable-next-line
   }, [amountGood, amountWork]);
 
   return (
-    <div className="amount">
+    <div className="page">
       <div className="title">DEFINISSONS LE MONTANT DE VOTRE PROJET</div>
       <div className="amount-project-grey">
         <span className="amount-project-question">
@@ -41,9 +44,13 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
           value={amountGood}
           onChange={event => {
             setAmountGood(parseInt(event.target.value, 10));
+            setIsAmountOk(true);
           }}
         />
         <span className="span-amount"> €</span>
+        {userProject.amount.good !== "" || isAmountOk === false ? null : (
+          <span style={{ paddingLeft: "5px" }}>merci de remplir ce champs</span>
+        )}
       </div>
       <div className="amount-project-white">
         <span className="amount-project-question">
@@ -77,16 +84,39 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
         />
         <span className="span-amount"> €</span>
       </div>
-      {userProject.amount.good === "" ? (
-        <div>merci de remplir un montant estime</div>
-      ) : (
-        <ProgBar
+      {isChoiceDone === false ? null : (
+        <span className="error-message">
+          Merci de faire un choix avant de valider
+        </span>
+      )}
+
+      <div className="down">
+        <NavBar
           setCounter={setCounter}
           counter={counter}
           userProject={userProject}
           setUserProject={setUserProject}
         />
-      )}
+        {amountGood === "" || userProject.amount.good === "" ? (
+          <span
+            className="next-button-off"
+            onClick={() => {
+              setIsChoiceDone(!isChoiceDone);
+            }}
+          >
+            Valider
+          </span>
+        ) : (
+          <span
+            className="next-button"
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+          >
+            Valider
+          </span>
+        )}
+      </div>
     </div>
   );
 };
