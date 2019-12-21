@@ -84,11 +84,17 @@
   height: 100px;
   padding-top: 50px;
   border-bottom: solid 1px var(--grey);
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-text {
   font-size: 18px;
   font-weight: 400;
+}
+.admin {
+  text-decoration: none;
+  color: var(--orange);
 }
 /* ########## HOME ################## */
 
@@ -274,10 +280,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* ########## PROG BAR ################## */
+.progBar {
+  width: 250px;
+}
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  /* flex: 1; */
+  width: 60%;
 }
 .down {
   display: flex;

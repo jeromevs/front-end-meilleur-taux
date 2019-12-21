@@ -5,14 +5,16 @@ import Logo from "../images/logo.jpg";
 const Header = () => {
   return (
     <div className="header">
-      <img className="header-logo" src={Logo} alt="logo meilleur taux" />
-      <Link to="/Login">
-        <span className="admin">ADMIN</span>
-      </Link>
+      <div className="header-user">
+        <img className="header-logo" src={Logo} alt="logo meilleur taux" />
 
-      <p className="header-text">
-        Crédit immobilier: 5mn pour obtenir le meilleur taux
-      </p>
+        <div className="header-text">
+          Crédit immobilier: 5mn pour obtenir le meilleur taux
+        </div>
+      </div>
+      <Link className="admin" to="/Login">
+        <span>ADMIN</span>
+      </Link>
     </div>
   );
 };
