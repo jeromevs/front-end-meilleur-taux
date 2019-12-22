@@ -19,7 +19,13 @@ const TypeGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.typeGood === "maison" ? "radio-on" : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           MAISON
         </span>
         <span
@@ -31,7 +37,13 @@ const TypeGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.typeGood === "appartement" ? "radio-on" : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           APPARTEMENT
         </span>
       </div>

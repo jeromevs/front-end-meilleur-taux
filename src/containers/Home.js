@@ -7,14 +7,7 @@ import Location from "../components/Location";
 import Amount from "../components/Amount";
 import Email from "../components/Email";
 import Finish from "../components/Finish";
-function Home({
-  counter,
-  setCounter,
-  userProject,
-  setUserProject,
-  isNextAllowed,
-  setIsNextAllowed
-}) {
+function Home({ counter, setCounter, userProject, setUserProject }) {
   return (
     <div className="home">
       {/* allows navigation between the different elements */}

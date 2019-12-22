@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+//just a simple page to allow admin to go to the backOffice, no security
 function Login() {
   const [password, setPassword] = useState("");
   const handlePasswordChange = event => {

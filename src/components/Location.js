@@ -70,7 +70,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
       {/* if selected country is different than France, no possibility to select the city, If selected country is France the user can select the city in an array corresponding to the first letters typed in the input */}
       {userProject.locationGood.country === "France" ? (
         <div className="location-city">
-          <span className="question-country">Ville ou code postal *</span>
+          <span className="question-country">Ville ou code postal ? *</span>
 
           <div className="city-choice">
             <input
@@ -86,7 +86,6 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
                 size={10}
                 className="city-select"
                 value={city}
-                // readOnly et avant j avais mis onClick
                 onChange={event => {
                   setCity(event.target.value);
                   setUserProject({
@@ -98,6 +97,9 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
                   });
                 }}
               >
+                <option value="" key={city}>
+                  votre choix
+                </option>
                 {cityList}
               </select>
             ) : null}

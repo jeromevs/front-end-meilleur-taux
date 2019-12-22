@@ -18,7 +18,13 @@ const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.stateGood === "ancien" ? "radio-on" : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           ANCIEN
         </span>
         <span
@@ -30,7 +36,13 @@ const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.stateGood === "neuf" ? "radio-on" : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           NEUF
         </span>
       </div>

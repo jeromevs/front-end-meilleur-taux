@@ -23,7 +23,15 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.usageGood === "residence principale"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           RESIDENCE PRINCIPALE
         </span>
         <span
@@ -40,7 +48,15 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.usageGood === "residence secondaire"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           RESIDENCE SECONDAIRE
         </span>
         <span
@@ -57,7 +73,15 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.usageGood === "investissement locatif"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           INVESTISSEMENT LOCATIF
         </span>
       </div>

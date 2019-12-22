@@ -7,7 +7,7 @@ function UserFile() {
   const [userFile, setUserFile] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   console.log(userFile);
-  //fetching the selected userProject to display
+  //fetching the selected userProject to display the details of the file
 
   const fetchData = async () => {
     try {
@@ -78,7 +78,7 @@ function UserFile() {
               <div className="array-box">{userFile.amount.project} €</div>
             </div>
           </div>
-
+          {/* Link that will send back the admin to the userFiles array, while calling the function deleteUserFile to delete the file from the databse */}
           <Link to="/BackOffice" style={{ textDecoration: "none" }}>
             <span
               onClick={() => {

@@ -4,6 +4,7 @@
   --orange: #ff9d22;
   --darkOrange: #ed7e18;
   --grey: #e4e4e4;
+  --darkGrey: #83807c;
   --black: #1e1e1e;
   --white: white;
   --red: red;
@@ -67,6 +68,22 @@
 .radio {
   margin-right: 5px;
   background-color: var(--black);
+}
+.radio-on {
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+  margin-right: 5px;
+  background-color: var(--black);
+  border: solid var(--grey) 2px;
+}
+.radio-off {
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+  margin-right: 5px;
+  background-color: var(--darkGrey);
+  border: solid var(--black) 2px;
 }
 
 .error-message {

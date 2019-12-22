@@ -25,7 +25,15 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.userSituation === "locataire"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           LOCATAIRE
         </span>
         <span
@@ -39,7 +47,15 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.userSituation === "proprietaire"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           PROPRIETAIRE
         </span>
         <span
@@ -56,7 +72,15 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.userSituation === "logement de fonction"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           LOGEMENT DE FONCTION
         </span>
         <span
@@ -73,7 +97,15 @@ const UserSituation = ({
             setCounter(counter + 1);
           }}
         >
-          <input className="radio" type="radio" />
+          <span
+            className={
+              userProject.userSituation === "hebergement a titre gratuit"
+                ? "radio-on"
+                : "radio-off"
+            }
+          >
+            {" "}
+          </span>
           HEBERGE A TITRE GRATUIT
         </span>
       </div>
