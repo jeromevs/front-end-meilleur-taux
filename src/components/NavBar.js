@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
+import ButtonBack from "./ButtonBack";
 
 const NavBar = ({ setCounter, counter }) => {
   let percent = Math.round((counter / 7) * 100);
@@ -9,14 +10,7 @@ const NavBar = ({ setCounter, counter }) => {
       {counter <= 0 ? (
         <span className="prev-button">précédent</span>
       ) : (
-        <span
-          className="prev-button"
-          onClick={() => {
-            setCounter(counter - 1);
-          }}
-        >
-          précédent
-        </span>
+        <ButtonBack counter={counter} setCounter={setCounter} />
       )}
       <div className="progBar">
         <Progress

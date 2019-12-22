@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import countryList from "./countryList";
 import axios from "axios";
 import NavBar from "./NavBar";
+import ButtonNextOn from "./ButtonNextOn";
+import ButtonNextOff from "./ButtonNextOff";
 
 const Location = ({ counter, setCounter, userProject, setUserProject }) => {
   const [isChoiceDone, setIsChoiceDone] = useState(false);
@@ -14,7 +16,6 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
       "https://vicopo.selfbuild.fr/cherche/" + city
     );
     setList(response.data.cities);
-    // console.log(response.data.cities);
   };
   useEffect(() => {
     fetchData();
@@ -46,13 +47,11 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
         <span className="question-country">
           Dans quel pays se situe votre projet ? *
         </span>
-
+        {/* displays an array of all the countries and set the selection in the userProject*/}
         <select
           className="location-select"
           value={userProject.locationGood.country}
           onChange={event => {
-            console.log(event.target.value);
-
             setUserProject({
               ...userProject,
               locationGood: { country: event.target.value }
@@ -68,6 +67,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
           })}
         </select>
       </div>
+      {/* if selected country is different than France, no possibility to select the city, If selected country is France the user can select the city in an array corresponding to the first letters typed in the input */}
       {userProject.locationGood.country === "France" ? (
         <div className="location-city">
           <span className="question-country">Ville ou code postal *</span>
@@ -104,6 +104,7 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
           </div>
         </div>
       ) : null}
+      {/* display an alert message if the user wants to go to the next page without having made his choice */}
       {isChoiceDone === false ? null : (
         <span className="error-message">
           Merci de faire un choix avant de valider
@@ -114,31 +115,22 @@ const Location = ({ counter, setCounter, userProject, setUserProject }) => {
         notaire selon les conditions en vigueur dans le departement concerne.
       </div>
       <div className="down">
+        {/* call of the NavBar which includes back button and progressions bar */}
         <NavBar
           setCounter={setCounter}
           counter={counter}
           userProject={userProject}
           setUserProject={setUserProject}
         />
+        {/* depending on the selection of the user, the next button is activated and displays an alert or goes to the next page if the selection has been made */}
         {userProject.locationGood.country === "France" &&
         !userProject.locationGood.city ? (
-          <span
-            className="next-button-off"
-            onClick={() => {
-              setIsChoiceDone(!isChoiceDone);
-            }}
-          >
-            Valider
-          </span>
+          <ButtonNextOff
+            isChoiceDone={isChoiceDone}
+            setIsChoiceDone={setIsChoiceDone}
+          />
         ) : (
-          <span
-            className="next-button"
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            Valider
-          </span>
+          <ButtonNextOn counter={counter} setCounter={setCounter} />
         )}
       </div>
     </div>

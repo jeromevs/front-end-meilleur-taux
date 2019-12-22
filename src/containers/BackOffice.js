@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function BackOffice() {
   const [isLoading, setIsLoading] = useState(true);
   const [userFiles, setUserFiles] = useState([]);
-  console.log(userFiles);
+  // console.log(userFiles);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,17 +23,49 @@ function BackOffice() {
 
   return (
     <div className="backoffice">
-      <Link to="/">
-        <span className="admin">HOME</span>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <span className="admin">BACK TO HOME PAGE</span>
       </Link>
+      <div className="userFiles-array">
+        <div className="array-element">Num dossier</div>
+        <div className="array-element">Type de bien</div>
+        {/* <div className="array-element">Etat du bien</div>
+        <div className="array-element">Situation Emprunteur</div> */}
+        <div className="array-element">Pays</div>
+        {/* <div className="array-element">Ville</div>
+        <div className="array-element">Montant acquisition</div> */}
+        <div className="array-element">Montant Projet</div>
+      </div>
+
       {isLoading === true ? (
         <p>Chargement en cours....</p>
       ) : (
         <>
-          {userFiles.map((files, index) => {
+          {userFiles.map((userProject, index) => {
             return (
-              <Link to={"/userFile/" + files.fileId} key={index}>
-                <div className="userFiles-array">{files.fileId}</div>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={"/userFile/" + userProject.fileId}
+                key={index}
+              >
+                <div className="userFiles-array">
+                  <div className="array-element">{userProject.fileId}</div>
+                  <div className="array-element">{userProject.typeGood}</div>
+                  {/* <div className="array-element">{userProject.stateGood}</div>
+                  <div className="array-element">
+                    {userProject.userSituation}
+                  </div> */}
+                  <div className="array-element">
+                    {userProject.locationGood.country}
+                  </div>
+                  {/* <div className="array-element">
+                    {userProject.locationGood.city}
+                  </div>
+                  <div className="array-element">{userProject.amount.good}</div> */}
+                  <div className="array-element">
+                    {userProject.amount.project}
+                  </div>
+                </div>
               </Link>
             );
           })}

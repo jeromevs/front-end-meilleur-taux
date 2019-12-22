@@ -14,14 +14,14 @@ function Login() {
         value={password}
         onChange={handlePasswordChange}
       />
-      {password === "tothemoon" ? (
+      {password !== "tothemoon" && password !== "" ? (
+        <div className="login-error-message">Mot de passe errone</div>
+      ) : (
         <Link to="/BackOffice">
           <button className="login-button" type="submit">
             OK
           </button>
         </Link>
-      ) : (
-        <div className="login-error-message">Mot de passe errone</div>
       )}
     </div>
   );

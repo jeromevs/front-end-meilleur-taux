@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
+import ButtonNextOn from "./ButtonNextOn";
+import ButtonNextOff from "./ButtonNextOff";
 
 const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
   const [amountGood, setAmountGood] = useState(userProject.amount.good);
   const [amountWork, setAmountWork] = useState(userProject.amount.work);
   const [isAmountOk, setIsAmountOk] = useState(false);
   const [isChoiceDone, setIsChoiceDone] = useState(false);
-
+  // calculation of the notary fees and the total of the userProject
   useEffect(() => {
     let notaire = 0;
     const good = Number.isNaN(amountGood) ? 0 : amountGood;
@@ -47,6 +49,7 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
             setIsAmountOk(true);
           }}
         />
+        {/* displays an alert if the user didn't fulfill the amount of his acquisition */}
         <span className="span-amount"> €</span>
         {userProject.amount.good !== "" || isAmountOk === false ? null : (
           <span style={{ paddingLeft: "5px" }}>merci de remplir ce champs</span>
@@ -91,30 +94,21 @@ const Amount = ({ counter, setCounter, userProject, setUserProject }) => {
       )}
 
       <div className="down">
+        {/* call of the NavBar which includes back button and progressions bar */}
         <NavBar
           setCounter={setCounter}
           counter={counter}
           userProject={userProject}
           setUserProject={setUserProject}
         />
+        {/* depending on the selection of the user, the next button is activated and displays an alert or goes to the next page if the selection has been made */}
         {amountGood === "" || userProject.amount.good === "" ? (
-          <span
-            className="next-button-off"
-            onClick={() => {
-              setIsChoiceDone(!isChoiceDone);
-            }}
-          >
-            Valider
-          </span>
+          <ButtonNextOff
+            isChoiceDone={isChoiceDone}
+            setIsChoiceDone={setIsChoiceDone}
+          />
         ) : (
-          <span
-            className="next-button"
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            Valider
-          </span>
+          <ButtonNextOn counter={counter} setCounter={setCounter} />
         )}
       </div>
     </div>

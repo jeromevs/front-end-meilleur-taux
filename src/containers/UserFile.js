@@ -23,7 +23,7 @@ function UserFile() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   //delete the chosen userProject
   const deleteUserFile = async () => {
@@ -45,15 +45,47 @@ function UserFile() {
         <div> En cours de chargement...</div>
       ) : (
         <>
-          <div>{userFile.userEmail}</div>
-          <div>{userFile.fileId}</div>
-          <Link to="/BackOffice">
+          <Link to="/BackOffice" style={{ textDecoration: "none" }}>
+            <span className="admin">BACK</span>
+          </Link>
+          <div className="file-presentation">
+            <div className="userFile-array">
+              <div className="array-element">Num dossier</div>
+              <div className="array-element">Email</div>
+              <div className="array-element">Type de bien</div>
+              <div className="array-element">Etat du bien</div>
+              <div className="array-element">Usage du bien</div>
+              <div className="array-element">Situation de l'acquereur</div>
+              <div className="array-element">Pays</div>
+              <div className="array-element">Ville</div>
+              <div className="array-element">Montant de l'acquisition</div>
+              <div className="array-element">Montant des travaux</div>
+              <div className="array-element">Frais de Notaire</div>
+              <div className="array-element">Montant du projet</div>
+            </div>
+            <div className="userFile-array">
+              <div className="array-box">{userFile.fileId}</div>
+              <div className="array-box">{userFile.userEmail}</div>
+              <div className="array-box">{userFile.typeGood}</div>
+              <div className="array-box">{userFile.stateGood}</div>
+              <div className="array-box">{userFile.usageGood}</div>
+              <div className="array-box">{userFile.userSituation}</div>
+              <div className="array-box">{userFile.locationGood.country}</div>
+              <div className="array-box">{userFile.locationGood.city}</div>
+              <div className="array-box">{userFile.amount.good} €</div>
+              <div className="array-box">{userFile.amount.work} €</div>
+              <div className="array-box">{userFile.amount.notary} €</div>
+              <div className="array-box">{userFile.amount.project} €</div>
+            </div>
+          </div>
+
+          <Link to="/BackOffice" style={{ textDecoration: "none" }}>
             <span
               onClick={() => {
                 deleteUserFile();
               }}
             >
-              XX
+              Detruire ce Dossier
             </span>
           </Link>
         </>

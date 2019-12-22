@@ -3,10 +3,11 @@ import Image from "../images/visuel-desktop-email.jpg";
 import axios from "axios";
 import Cookies from "js-cookie";
 import NavBar from "./NavBar";
+import ButtonNextOff from "./ButtonNextOff";
 
 const Email = ({ counter, setCounter, userProject, setUserProject }) => {
   const [checkbox, setCheckbox] = useState(false);
-  const [isAllOk, setIsAllOk] = useState(false);
+  const [isChoiceDone, setIsChoiceDone] = useState(false);
   //regEx to verify that user types a valid email address form
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -45,6 +46,7 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
             setUserProject({ ...userProject, userEmail: event.target.value });
           }}
         />
+        {/* depending on the verification with the regex an alert is displayed if the user doesn't type a string that respects the email address codes */}
         {emailRegEx.test(userProject.userEmail) === false &&
         userProject.userEmail ? (
           <div className="email-wrong">
@@ -62,7 +64,8 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
       <span className="checkbox-text">
         J'accepte de recevoir par email des propositions de Meilleurtaux
       </span>
-      {isAllOk === true ? (
+      {/* displays an alert if the user didn't fulfill email address and validate the checkbox */}
+      {isChoiceDone === true ? (
         <div className="email-error-message">
           merci de renseigner votre email et d'accepter de recevoir par email
           les proposistions de Meilleurtaux pour valider votre demande
@@ -70,26 +73,24 @@ const Email = ({ counter, setCounter, userProject, setUserProject }) => {
       ) : null}
 
       <div className="down">
+        {/* call of the NavBar which includes back button and progressions bar */}
         <NavBar
           setCounter={setCounter}
           counter={counter}
           userProject={userProject}
           setUserProject={setUserProject}
         />
+        {/* depending on the selection of the user, the next button is activated and displays an alert or goes to the next page if the selection has been made */}
         {checkbox === false ||
         emailRegEx.test(userProject.userEmail) === false ||
         userProject.userEmail === "" ? (
-          <span
-            className="next-button-off"
-            onClick={() => {
-              setIsAllOk(!isAllOk);
-            }}
-          >
-            Valider
-          </span>
+          <ButtonNextOff
+            isChoiceDone={isChoiceDone}
+            setIsChoiceDone={setIsChoiceDone}
+          />
         ) : (
           <span
-            className="next-button"
+            className="next-button-on"
             onClick={() => {
               Cookies.remove("counter");
               Cookies.remove("userProject");

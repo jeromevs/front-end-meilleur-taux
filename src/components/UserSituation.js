@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "./NavBar";
+import ButtonNextOff from "./ButtonNextOff";
+import ButtonNextOn from "./ButtonNextOn";
 
 const UserSituation = ({
   counter,
@@ -88,23 +90,12 @@ const UserSituation = ({
           setUserProject={setUserProject}
         />
         {userProject.userSituation === "" ? (
-          <span
-            className="next-button-off"
-            onClick={() => {
-              setIsChoiceDone(!isChoiceDone);
-            }}
-          >
-            Suivant
-          </span>
+          <ButtonNextOff
+            isChoiceDone={isChoiceDone}
+            setIsChoiceDone={setIsChoiceDone}
+          />
         ) : (
-          <span
-            className="next-button"
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            Suivant
-          </span>
+          <ButtonNextOn counter={counter} setCounter={setCounter} />
         )}
       </div>
     </div>
