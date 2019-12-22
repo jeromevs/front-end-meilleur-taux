@@ -4,9 +4,9 @@ import { Link, useParams } from "react-router-dom";
 
 function UserFile() {
   const { id } = useParams();
-  const [userFile, setUserFile] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  console.log(userFile);
+  const [userFile, setUserFile] = useState({});
+
   //fetching the selected userProject to display the details of the file
 
   const fetchData = async () => {
@@ -21,9 +21,9 @@ function UserFile() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  });
+  // useEffect(() => {
+  fetchData();
+  // }, []);
 
   //delete the chosen userProject
   const deleteUserFile = async () => {
