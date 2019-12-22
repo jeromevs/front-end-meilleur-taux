@@ -21,9 +21,9 @@ function UserFile() {
     }
   };
 
-  // useEffect(() => {
-  fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   //delete the chosen userProject
   const deleteUserFile = async () => {
