@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import NavBar from "./NavBar";
 import ButtonNextOff from "./ButtonNextOff";
 import ButtonNextOn from "./ButtonNextOn";
+import Button from "./Button";
+
+const questions = ["ancien", "neuf"];
+const stateType = "stateGood";
 
 const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
   const [isChoiceDone, setIsChoiceDone] = useState(false);
@@ -9,42 +13,19 @@ const StateGood = ({ counter, setCounter, userProject, setUserProject }) => {
     <div className="page">
       <div className="title">ETAT DU BIEN</div>
       <div className="button-display">
-        <span
-          className={
-            userProject.stateGood === "ancien" ? "button-on" : "button-off"
-          }
-          onClick={() => {
-            setUserProject({ ...userProject, stateGood: "ancien" });
-            setCounter(counter + 1);
-          }}
-        >
-          <span
-            className={
-              userProject.stateGood === "ancien" ? "radio-on" : "radio-off"
-            }
-          >
-            {" "}
-          </span>
-          ANCIEN
-        </span>
-        <span
-          className={
-            userProject.stateGood === "neuf" ? "button-on" : "button-off"
-          }
-          onClick={() => {
-            setUserProject({ ...userProject, stateGood: "neuf" });
-            setCounter(counter + 1);
-          }}
-        >
-          <span
-            className={
-              userProject.stateGood === "neuf" ? "radio-on" : "radio-off"
-            }
-          >
-            {" "}
-          </span>
-          NEUF
-        </span>
+        {questions.map((question, index) => {
+          return (
+            <Button
+              key={index}
+              stateType={stateType}
+              question={question}
+              userProject={userProject}
+              setUserProject={setUserProject}
+              setCounter={setCounter}
+              counter={counter}
+            />
+          );
+        })}
       </div>
       {isChoiceDone === false ? null : (
         <span className="error-message">

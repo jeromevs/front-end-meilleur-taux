@@ -31,19 +31,21 @@
   justify-content: space-between;
   padding-bottom: 50px;
 }
-.button-on {
+.button {
   flex: 1;
   height: 100px;
-  background-color: var(--orange);
   font-weight: bold;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  box-shadow: 0px 5px var(--darkOrange);
   margin: 5px;
   padding: 5px;
+}
+.button-on {
+  background-color: var(--orange);
+  color: white;
+  box-shadow: 0px 5px var(--darkOrange);
 }
 .button-off:hover {
   background-color: var(--orange);
@@ -52,18 +54,10 @@
   border: none;
 }
 .button-off {
-  flex: 1;
-  height: 100px;
+  background-color: var(--white);
   border: solid 1px black;
-  font-weight: bold;
   color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
   box-shadow: 0px 5px lightgrey;
-  margin: 5px;
-  padding: 5px;
 }
 .radio {
   margin-right: 5px;

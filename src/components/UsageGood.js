@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import NavBar from "./NavBar";
 import ButtonNextOff from "./ButtonNextOff";
 import ButtonNextOn from "./ButtonNextOn";
+import Button from "./Button";
+
+const questions = [
+  "residence principale",
+  "residence secondaire",
+  "investissement locatif"
+];
+const stateType = "usageGood";
 
 const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
   const [isChoiceDone, setIsChoiceDone] = useState(false);
@@ -9,81 +17,19 @@ const UsageGood = ({ counter, setCounter, userProject, setUserProject }) => {
     <div className="page">
       <div className="title">USAGE DU BIEN</div>
       <div className="button-display">
-        <span
-          className={
-            userProject.usageGood === "residence principale"
-              ? "button-on"
-              : "button-off"
-          }
-          onClick={() => {
-            setUserProject({
-              ...userProject,
-              usageGood: "residence principale"
-            });
-            setCounter(counter + 1);
-          }}
-        >
-          <span
-            className={
-              userProject.usageGood === "residence principale"
-                ? "radio-on"
-                : "radio-off"
-            }
-          >
-            {" "}
-          </span>
-          RESIDENCE PRINCIPALE
-        </span>
-        <span
-          className={
-            userProject.usageGood === "residence secondaire"
-              ? "button-on"
-              : "button-off"
-          }
-          onClick={() => {
-            setUserProject({
-              ...userProject,
-              usageGood: "residence secondaire"
-            });
-            setCounter(counter + 1);
-          }}
-        >
-          <span
-            className={
-              userProject.usageGood === "residence secondaire"
-                ? "radio-on"
-                : "radio-off"
-            }
-          >
-            {" "}
-          </span>
-          RESIDENCE SECONDAIRE
-        </span>
-        <span
-          className={
-            userProject.usageGood === "investissement locatif"
-              ? "button-on"
-              : "button-off"
-          }
-          onClick={() => {
-            setUserProject({
-              ...userProject,
-              usageGood: "investissement locatif"
-            });
-            setCounter(counter + 1);
-          }}
-        >
-          <span
-            className={
-              userProject.usageGood === "investissement locatif"
-                ? "radio-on"
-                : "radio-off"
-            }
-          >
-            {" "}
-          </span>
-          INVESTISSEMENT LOCATIF
-        </span>
+        {questions.map((question, index) => {
+          return (
+            <Button
+              key={index}
+              stateType={stateType}
+              question={question}
+              userProject={userProject}
+              setUserProject={setUserProject}
+              setCounter={setCounter}
+              counter={counter}
+            />
+          );
+        })}
       </div>
       {isChoiceDone === false ? null : (
         <span className="error-message">
